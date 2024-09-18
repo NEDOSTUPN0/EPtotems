@@ -14,6 +14,7 @@ const roleColors = {
     5: '#1acd6c', // Спонсор
     6: '#bbff9f', // Донатер
     7: '#1FFF1F' // Этот человек пытался разблокировать ваш телефон
+
 };
 
 // Определение ролей для сортировки
@@ -24,7 +25,8 @@ const rolePriority = {
     4: 3, // Модератор
     5: 5, // Спонсор
     6: 6,  // Донатер
-    7: 4 // Этот человек разблокировал ваш телефон
+    7: 4, // Этот человек разблокировал ваш телефон
+    0: 999 // Игроки без роли (самый низкий приоритет)
 };
 
 // Загружаем игроков
@@ -44,8 +46,9 @@ function sortAndRenderPlayers(players) {
 // Сортировка по ролям и алфавиту
 function sortPlayers(players) {
     return players.sort((a, b) => {
-        const roleA = rolePriority[a.role] !== undefined ? rolePriority[a.role] : 6;
-        const roleB = rolePriority[b.role] !== undefined ? rolePriority[b.role] : 6;
+        // Используем 0 для отсутствующей роли
+        const roleA = rolePriority[a.role] !== undefined ? rolePriority[a.role] : rolePriority[0];
+        const roleB = rolePriority[b.role] !== undefined ? rolePriority[b.role] : rolePriority[0];
         
         // Сравнение по роли (чем меньше значение, тем выше приоритет)
         if (roleA !== roleB) {
@@ -56,6 +59,7 @@ function sortPlayers(players) {
         return a.nickname.localeCompare(b.nickname);
     });
 }
+
 
 // Отображаем игроков
 function renderPlayers(players) {
