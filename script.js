@@ -1,11 +1,8 @@
-// Получаем элементы DOM
 const playerList = document.getElementById('playerList');
 const searchInput = document.getElementById('searchInput');
 
-// Загружаем данные из JSON и отображаем игроков
 let playersData = [];
 
-// Определяем цвета ролей
 const roleColors = {
     1: '#ffa82d', // Основатель
     2: '#ff505a', // Администратор
@@ -17,7 +14,6 @@ const roleColors = {
 
 };
 
-// Определение ролей для сортировки
 const rolePriority = {
     1: 0, // Основатель
     2: 1, // Администратор
